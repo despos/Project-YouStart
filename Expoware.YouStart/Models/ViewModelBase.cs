@@ -6,7 +6,8 @@
 // Author: Dino Esposito
 //
 
-using Expoware.YouStart.Common.Extensions;
+
+using Expoware.Youbiquitous.Extensions;
 
 namespace Expoware.YouStart.Models
 {

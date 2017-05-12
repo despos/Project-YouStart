@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Expoware.YouStart.Common.Extensions;
+using Expoware.Youbiquitous.Extensions;
+
 
 namespace Expoware.YouStart.Common.Features.AutoComplete
 {

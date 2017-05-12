@@ -40,7 +40,7 @@ namespace Expoware.YouStart.Controllers
 
             var message = String.Format(Strings_Errors.Msg_Error500, code);
             var line1 = String.Empty;
-            var appSpecific = (exception is StarterKitException);
+            var appSpecific = (exception is YouStartAppException);
 
             if (code == 404)
             {

@@ -17,14 +17,14 @@ namespace Expoware.YouStart
 {
     public class StarterKitApplication : HttpApplication
     {
-        public static StarterKitSettings AppSettings { get; private set; }
+        public static YouStartAppSettings AppSettings { get; private set; }
 
         protected void Application_Start()
         {
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
             // Load configuration data
-            AppSettings = StarterKitSettings.Initialize();
+            AppSettings = YouStartAppSettings.Initialize();
         }
 
         protected void Application_Error(object sender, EventArgs e)
@@ -40,7 +40,7 @@ namespace Expoware.YouStart
 
         //protected void Application_PostAuthenticateRequest()
         //{
-        //    var customPrincipal = new StarterKitPrincipal(User);
+        //    var customPrincipal = new YouStartAppPrincipal(User);
         //    HttpContext.Current.User = customPrincipal;
         //}
 

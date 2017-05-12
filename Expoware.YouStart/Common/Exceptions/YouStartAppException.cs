@@ -11,13 +11,13 @@ using System;
 
 namespace Expoware.YouStart.Common.Exceptions
 {
-    public class StarterKitException : Exception
+    public class YouStartAppException : Exception
     {
-        public StarterKitException(string message)
+        public YouStartAppException(string message)
             : base(message)
         {
         }
-        public StarterKitException(int code, string message, string line1 = "", string line2 = "")
+        public YouStartAppException(int code, string message, string line1 = "", string line2 = "")
             : base(message)
         {
             Line1 = line1;

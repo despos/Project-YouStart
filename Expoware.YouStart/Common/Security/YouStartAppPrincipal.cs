@@ -10,12 +10,12 @@ using System.Security.Principal;
 
 namespace Expoware.YouStart.Common.Security
 {
-    public class StarterKitPrincipal : IPrincipal
+    public class YouStartAppPrincipal : IPrincipal
     {
         //private readonly User _theUser;
         //private readonly UserRepository _userRepository = new UserRepository();
 
-        public StarterKitPrincipal(IPrincipal user)
+        public YouStartAppPrincipal(IPrincipal user)
         {
             Identity = new GenericIdentity(user.Identity.Name);
             //_theUser = _userRepository.FindUserByName(Identity.Name);

@@ -12,19 +12,19 @@ namespace Expoware.YouStart.Common.Security
 {
     public static class HttpContextExtensions
     {
-        public static StarterKitPrincipal StarterKitPrincipal(this HttpContext context)
+        public static YouStartAppPrincipal StarterKitPrincipal(this HttpContext context)
         {
-            var appUser = context.User as StarterKitPrincipal;
+            var appUser = context.User as YouStartAppPrincipal;
             if (appUser == null)
-                return new StarterKitPrincipal(context.User);
+                return new YouStartAppPrincipal(context.User);
             return appUser;
         }
 
-        public static StarterKitPrincipal StarterKitPrincipal(this HttpContextBase context)
+        public static YouStartAppPrincipal StarterKitPrincipal(this HttpContextBase context)
         {
-            var appUser = context.User as StarterKitPrincipal;
+            var appUser = context.User as YouStartAppPrincipal;
             if (appUser == null)
-                return new StarterKitPrincipal(context.User);
+                return new YouStartAppPrincipal(context.User);
             return appUser;
         }
     }

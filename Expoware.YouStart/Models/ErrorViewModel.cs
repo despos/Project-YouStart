@@ -15,13 +15,13 @@ namespace Expoware.YouStart.Models
     {
         public ErrorViewModel(string message, bool isAppSpecific = false)
         {
-            ErrorOccurred = new StarterKitException(message)
+            ErrorOccurred = new YouStartAppException(message)
             {
                 Title = Strings_Errors.Msg_SomethingWentWrong,
                 IsAppSpecificError = isAppSpecific
             };
         }
 
-        public StarterKitException ErrorOccurred { get; private set; }
+        public YouStartAppException ErrorOccurred { get; private set; }
     }
 }

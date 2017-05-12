@@ -11,17 +11,17 @@ using System.Configuration;
 
 namespace Expoware.YouStart.Common
 {
-    public class StarterKitSettings
+    public class YouStartAppSettings
     {
         /// <summary>
         /// App title
         /// </summary>
         public string ApplicationTitle { get; private set; }
 
-        public static StarterKitSettings Initialize()
+        public static YouStartAppSettings Initialize()
         {
             var titleBase0 = ConfigurationManager.AppSettings["starterkit:app-title-base0"] ?? String.Empty;
-            var settings = new StarterKitSettings
+            var settings = new YouStartAppSettings
             {
                 ApplicationTitle = String.Format("{0}", titleBase0),
             };
