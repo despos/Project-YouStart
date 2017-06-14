@@ -12,7 +12,7 @@ using Expoware.Ybq.Server.Application;
 namespace Expoware.Ybq.Server.Controllers
 {
     //[Authorize]
-    public class HomeController : AppController
+    public class HomeController : Controller
     {
         private readonly HomeService _service = new HomeService();
 

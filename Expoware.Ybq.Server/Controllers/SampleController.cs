@@ -21,7 +21,7 @@ using Expoware.Youbiquitous.Mvc.Filters;
 namespace Expoware.Ybq.Server.Controllers
 {
     //[Authorize]
-    public class SampleController : AppController
+    public class SampleController : Controller
     {
         public ActionResult Throw()
         {
