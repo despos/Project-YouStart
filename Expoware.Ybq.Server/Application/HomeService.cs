@@ -10,6 +10,9 @@ using Expoware.Ybq.Server.Models.Home;
 
 namespace Expoware.Ybq.Server.Application
 {
+    /// <summary>
+    /// Sample application service class
+    /// </summary>
     public class HomeService
     {
         public HomeViewModel GetHomeViewModel()
