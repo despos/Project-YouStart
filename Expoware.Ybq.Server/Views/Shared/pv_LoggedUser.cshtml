@@ -1,6 +1,6 @@
-﻿@model Expoware.YouStart.Models.ViewModelBase
+﻿@model Expoware.Ybq.Server.Models.ViewModelBase
+@using Expoware.Ybq.Server.Resources
 @using Expoware.Youbiquitous.Extensions
-@using Expoware.YouStart.Resources
 @{
     var alternateCultures = Model.Settings.CultureManager.AlternateCultures();
     var currentLanguageFlag = String.Format("{0}.png", Model.Settings.CultureManager.Current().Name);

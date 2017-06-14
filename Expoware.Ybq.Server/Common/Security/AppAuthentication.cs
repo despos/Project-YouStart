@@ -30,7 +30,11 @@ namespace Expoware.Ybq.Server.Common.Security
             //var cookie = FormsAuthentication.GetAuthCookie(FormsAuthentication.FormsCookieName, rememberMe);
             //cookie.Value = ticket;
             //HttpContext.Current.Response.Cookies.Add(cookie);
-            FormsAuthentication.SetAuthCookie(username + "|" + CultureInfo.CurrentUICulture, rememberMe);
+
+            // Simple way to attach one (or more) additional claims)
+            //FormsAuthentication.SetAuthCookie(username + "|" + CultureInfo.CurrentUICulture, rememberMe);
+
+            FormsAuthentication.SetAuthCookie(username, rememberMe);
         }
 
         public static void SignOutFromApplication()

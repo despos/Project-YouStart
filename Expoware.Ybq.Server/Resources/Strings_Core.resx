@@ -165,4 +165,7 @@
   <data name="System_OperationInProgress" xml:space="preserve">
     <value>Working ...</value>
   </data>
+  <data name="System_OptionsAvailable" xml:space="preserve">
+    <value>Options available</value>
+  </data>
 </root>

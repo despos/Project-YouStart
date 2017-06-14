@@ -25,8 +25,9 @@ namespace Expoware.Ybq.Server.Controllers
     {
         public ActionResult Throw()
         {
-            throw new YbqAppException("Deliberate exception",
-                "http://www.google.com", "http://www.stackoverflow.com");
+            throw new YbqAppException("Deliberate exception")
+                .AddRecoveryLink("Search on Google", "http://www.google.com")
+                .AddRecoveryLink("Search on SO", "http://www.stackoverflow.com");
         }
 
         public async Task<ActionResult> Download()

@@ -17,6 +17,9 @@ namespace Expoware.Ybq.Server.Common.Security
 
         public YbqAppPrincipal(IPrincipal user)
         {
+            // If you have custom data attached to the user name, this is where you fix it
+
+
             Identity = new GenericIdentity(user.Identity.Name);
             //_theUser = _userRepository.FindUserByName(Identity.Name);
         }

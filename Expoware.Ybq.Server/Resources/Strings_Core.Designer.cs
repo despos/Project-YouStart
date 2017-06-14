@@ -203,5 +203,14 @@ namespace Expoware.Ybq.Server.Resources {
                 return ResourceManager.GetString("System_OperationInProgress", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options available.
+        /// </summary>
+        public static string System_OptionsAvailable {
+            get {
+                return ResourceManager.GetString("System_OptionsAvailable", resourceCulture);
+            }
+        }
     }
 }

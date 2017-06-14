@@ -33,15 +33,17 @@
 
         </div>
         
-        <br/><br /><br />
-        <h2>Options available</h2>
-        <hr/>
-        <div>
-            @foreach (var link in Model.ErrorOccurred.RecoveryLinks)
-            {
-                <a class="btn btn-primary" href="@link">@link</a>               
-            }
-        </div>
+        @if (Model.ErrorOccurred.RecoveryLinks.Count > 0)
+        {
+            <h2 class="margin-top-lg">@Strings_Core.System_OptionsAvailable</h2>
+            <hr/>
+            <div style="color: #fff">
+                @foreach (var link in Model.ErrorOccurred.RecoveryLinks)
+                {
+                    <a role="button" class="btn btn-primary" href="@link.Url">@link.Text</a>
+                }
+            </div>
+        }
     </div>
 </div>
 
