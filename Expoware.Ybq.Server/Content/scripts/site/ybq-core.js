@@ -47,8 +47,10 @@ Ybq.configureCommonElements = function () {
     });
     $("select").change(function (e) {
         this.blur();
-        var index = parseInt($(this).attr('tabIndex')) + 1;
-        $(':input[tabindex=' + index + ']')[0].focus();
+        if ($(this).attr('tabIndex') !== undefined) {
+            var index = parseInt($(this).attr('tabIndex')) + 1;
+            $(':input[tabindex=' + index + ']')[0].focus();
+        }
     });
     $(".alert .alert-autoclose").click(function (e) {
         $(this).hide();
@@ -58,21 +60,88 @@ Ybq.configureCommonElements = function () {
         $(this).attr("onkeyup",
             "Ybq.clickOnEnter(event, '" + $(this).data("click-on-enter") + "')");
     });
+
+    // INPUT TYPE=FILE
+    $("div.ybq-file-container").each(function () {
+        var embeddedFile = $(this).find("input[type=file]").first();
+        embeddedFile.hide();
+        var selectedFileSelector = "#" + $(embeddedFile).attr("id") + "-selected";
+        $(selectedFileSelector).text($(this).data("notselected"));
+
+        $(embeddedFile).change(function (evt) {
+            var id = $(this).attr("id");
+            var files = evt.target.files;
+            if (files && files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#" + id + "-preview").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(files[0]);
+            }
+        });
+        $(embeddedFile).click(function (ev) {
+            return ev.stopPropagation();
+        });
+    });
+    $("div.ybq-file-container").click(function () {
+        var embeddedFile = $(this).find("input[type=file]").first();
+        $(embeddedFile).click();
+
+        var controlId = $(embeddedFile).attr("id");
+        var previewSelector = "#" + controlId + "-preview";
+        var fileName = $(embeddedFile).val();
+        $(previewSelector).attr("title", fileName);
+        $(previewSelector).show();
+        var emptySelector = "#" + controlId + "-selected";
+        $(emptySelector).hide();
+        $("button.ybq-file-remover").show();
+        return false;
+    });
+    $("button.ybq-file-remover").click(function () {
+        var parent = $(this).parent().closest("div.ybq-file-container");
+        var embeddedFile = parent.find("input[type=file]").first();
+        $(embeddedFile).val("");
+        var controlId = $(embeddedFile).attr("id");
+        var previewSelector = "#" + controlId + "-preview";
+        $(previewSelector).removeAttr("src").removeAttr("title");
+        $(previewSelector).hide();
+        var emptySelector = "#" + controlId + "-selected";
+        $(emptySelector).show();
+        $(this).hide();
+
+        return false;
+    });
 };
+
+/// <summary>
+/// Set SRC in case of missing images
+/// </summary>
+Ybq.defaultImage = function (img, defaultImg) {
+    img.onerror = "";
+    img.src = defaultImg;
+}
 
 /// <summary>
 /// Helper function to post the content of a HTML form
 /// </summary>
 Ybq.postForm = function (formSelector, success, error) {
     var form = $(formSelector);
-    var serializedFields = form.serialize();
+    //var serializedFields = form.serialize();
+    var formData = new FormData(form[0]);
+    form.find("input[type=file]").each(function () {
+        formData.append($(this).attr("name"), $(this)[0].files[0]);
+    });
+
     Ybq.notifyBeginOfOperation(formSelector);
     $.ajax({
         cache: false,
         url: form.attr("action"),
         type: form.attr("method"),
         dataType: "html",
-        data: serializedFields,
+        data: formData,
+        processData: false,
+        contentType: false,  
+        //data: serializedFields,
         success: function (data) { Ybq.notifyEndOfOperation(formSelector); success(data); },
         error: function (data) { Ybq.notifyEndOfOperation(formSelector); error(data); }
     });
@@ -194,6 +263,9 @@ Ybq.clearFormAfterTimeout = function (formSelector, ms) {
             $(formSelector + "-loader").hide();
             $(formSelector + " div.has-feedback").removeClass("has-error");
             $(formSelector + "-message").html("").hide();
+
+        ////
+            $(formSelector + " input").removeAttr("has-error");
         },
         timeout);
 }
@@ -211,7 +283,10 @@ Ybq.canAcceptValueOf = function(formSelector, fieldId, acceptableCondition, erro
     if (labelId == undefined || labelId.length === 0) {
         labelId = fieldId;
     }
-    $(formSelector + "-message").show().html(errorMessage);
+    $(formSelector + "-message")
+        .removeClass("alert-success alert-danger alert-warning")
+        .addClass("alert-info")
+        .show().html(errorMessage);
     $(formSelector + "-group-" + labelId).addClass("has-error");
     $(fieldSelector).focus();
     return false;
@@ -222,6 +297,7 @@ Ybq.canAcceptValueOf = function(formSelector, fieldId, acceptableCondition, erro
 /// </summary>
 Ybq.canAcceptFormContent = function(formSelector, fieldValidators) {
     var pendingErrors = 0;
+    var errorDict = [];
 
     // Reset UI
     Ybq.Internal.resetAllTabs(formSelector);
@@ -233,7 +309,12 @@ Ybq.canAcceptFormContent = function(formSelector, fieldValidators) {
             if (!fv.validator(currentValue)) {
                 $(formSelector + "-group-" + fv.fieldId).addClass("has-error");
                 Ybq.Internal.tabErrorOn(formSelector, fv.tabId, true);
-                $(fieldSelector).focus();
+                                
+                // Put focus on first input with invalid data in the tab
+                if (errorDict[fv.tabId] === undefined) {
+                    errorDict[fv.tabId] = fv.fieldId;
+                    $(fieldSelector).focus();
+                }
                 pendingErrors++;
             } else {
                 $(formSelector + "-group-" + fv.fieldId).removeClass("has-error");
@@ -265,6 +346,7 @@ Ybq.Internal.tabErrorOn = function(formSelector, name, status) {
         $(tabIcon).hide();
     }
 }
+
 
 
 // **************************************************************************************************//
@@ -404,3 +486,4 @@ Ybq.printPopup = function (url, target, config) {
     }
     window.open(Ybq.fromServer(url), target, config);
 }
+

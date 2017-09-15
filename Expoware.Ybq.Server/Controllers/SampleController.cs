@@ -10,6 +10,7 @@ using System;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Web;
 using System.Web.Mvc;
 using Expoware.Ybq.Server.Common;
 using Expoware.Ybq.Server.Common.Exceptions;
@@ -54,7 +55,7 @@ namespace Expoware.Ybq.Server.Controllers
 
         [HttpPost]
         [AjaxOnly]
-        public ActionResult Form(FormInputModel input)
+        public ActionResult Form(FormInputModel input, HttpPostedFileBase picture)
         {
             // Do some work 
             Thread.Sleep(2000);

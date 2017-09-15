@@ -13,6 +13,7 @@
     <div class="margin-top-md">
         <form class="form-horizontal" id="sample-form"
               role="form" method="post"
+              enctype="multipart/form-data"
               action="@Url.Action("form", "sample")">
             <div class="form-group has-feedback" id="sample-form-group-email">
                 <div class="col-xs-12">
@@ -36,23 +37,82 @@
                     <i class="fa fa-user form-control-feedback"></i>
                 </div>
             </div>
+            <div class="form-group has-feedback" id="sample-form-group-gender">
+                <div class="col-xs-12">
+                    @*<select class="form-control" id="gender" name="gender">
+                        <option value="NA">Not specified</option>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>*@
+                    <div class="ybq-select-container" id="gender" name="gender">
+                        <div class="ybq-select-item" data-value="1">
+                            <b>One</b>
+                        </div>
+                        <div class="ybq-select-item" data-value="2">
+                            <span>Two</span>
+                        </div>
+                        <div class="ybq-select-item" data-value="3">
+                            <span>Three</span>
+                        </div>
+                    </div>
+                    
+                    @*<div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            Action <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Action</a></li>
+                            <li><a href="#">Another action</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </div>*@
+                </div>
+            </div>
             <div class="form-group has-feedback" id="sample-form-group-country">
                 <div class="col-xs-12">
                     <input type="text" class="form-control"
                            id="country" name="country"
                            placeholder="Country"
+                           value="Italy"
                            data-click-on-enter="#sample-form-submit-button">
                     <i class="fa fa-flag form-control-feedback"></i>
-                    <input type="hidden" id="countrycode" name="countrycode" />
+                    <input type="hidden" id="countrycode" name="countrycode" value="ita" />
                 </div>
             </div>
+            <div class="form-group has-feedback" id="sample-form-group-picture">
+                <div class="col-xs-3" style="width: 130px">
+                    <div class="ybq-file-container"
+                         data-notselected="image not available">
+                        <input type="file" class="form-control"
+                               id="picture" name="picture">
+                        <div id="picture-selected-container">
+                            <img id="picture-preview" class="ybq-file-preview img-responsive" />
+                            <div id="picture-selected" class="text-muted"></div>
+                        </div>
+                        <div class="text-center">
+                            <button class="btn btn-xs btn-danger ybq-file-remover">
+                                <i class="fa fa-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <img src="~/content/images/hello.png" 
+                 onerror="Ybq.defaultImage(this, '@Url.Content("~/content/images/ybq-xs.png")')"
+                 alt="" />
+            
+
+
             <div class="form-group" style="margin-top: 30px">
                 <div class="col-xs-offset-2 col-xs-8 col-md-4 col-md-offset-4">
                     <button type="button" id="sample-form-submit-button"
                             class="btn btn-primary btn-block">
                         @Strings_Menu.Submit
                     </button>
-                    <span id="sample-form-loader" 
+                    <span id="sample-form-loader"
                           class="text-danger" style="display: none;">
                         @Strings_Core.System_OperationInProgress
                     </span>
@@ -89,7 +149,7 @@
                 "No country specified",
                 "country")) {
             Ybq.postForm("#sample-form",
-                function(data) {
+                function (data) {
                     var response = JSON.parse(data);
                     Ybq.toast("#sample-form-message", response.Message, response.Success);
                 });
@@ -98,3 +158,47 @@
         }
     });
 </script>
+
+<script>
+    $("div.ybq-select-container").each(function () {
+        var id = $(this).attr("id");
+        var name = $(this).attr("name");
+        $(this).addClass("btn-group");
+        var input = "<input type='hidden' id='" + id + "' name='" + name +"'>";
+        $(this).append(input);
+        $(this).append("<button class='btn btn-default dropdown-toggle' data-toggle='dropdown'>Select</button>");
+        var ul = "<ul class='dropdown-menu' style='width: 100%'>";
+        $(this).find("div.ybq-select-item").each(function () {
+            $(this).hide();
+            var value = $(this).data("value");
+            var text = $(this).html();
+            ul += "<li>" + "<a href='#' data-value='" + value + "'><span>" + text + "</span></a>" + "</li>";
+        });
+        ul += "</ul>";
+        $(this).append(ul);
+        //alert($(this).html());
+    });
+
+</script>
+
+<!--
+INPUT FILE skeleton
+========================
+    
+***picture *** as the name of the file input
+
+<div class="ybq-file-container"
+     data-notselected="image not available">
+    <input type="file" class="form-control"
+           id="picture" name="picture">
+    <div id="picture-selected-container">
+        <img id="picture-preview" class="ybq-file-preview img-responsive" />
+        <div id="picture-selected" class="text-muted"></div>
+    </div>
+    <div class="text-center">
+        <button class="btn btn-xs btn-danger ybq-file-remover">
+            <i class="fa fa-close"></i>
+        </button>
+    </div>
+</div>
+-->

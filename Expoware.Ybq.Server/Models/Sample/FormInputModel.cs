@@ -13,5 +13,6 @@ namespace Expoware.Ybq.Server.Models.Sample
         public string Email { get; set; }
         public string DisplayName { get; set; }
         public string CountryCode { get; set; }
+        public string Gender { get; set; }
     }
 }

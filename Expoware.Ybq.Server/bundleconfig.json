@@ -52,5 +52,11 @@
     "inputFiles": [
       "Content/styles/youstart-core.css"
     ]
+  },
+  {
+    "outputFileName": "Content/scripts/site/ybq-core.min.js",
+    "inputFiles": [
+      "Content/scripts/site/ybq-core.js"
+    ]
   }
 ]

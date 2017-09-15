@@ -1,3 +1,4 @@
+
 /*
  * typehead.js-bootstrap3.less
  * @version 0.2.1
@@ -160,7 +161,7 @@ fieldset[disabled] .twitter-typeahead .tt-input {
     margin: 2px 0 0;
     list-style: none;
     font-size: 1.2em;
-    background-color: #ddd;
+    background-color: #f00;
     border: 1px solid #555;
     border-radius: 0;
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);

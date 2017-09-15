@@ -185,3 +185,22 @@ ul li[role=presentation] {
 div[role=tabpanel] {
     margin-top: 30px;
 }
+
+/*
+////////////////////////////////////////////////////////////
+INPUT FILE
+*/
+
+.ybq-file-container {
+    border: solid 1px #bbb; 
+    text-align: center; 
+    cursor: pointer;
+    padding: 4px;
+}
+.ybq-file-remover {
+    display: none;
+    margin-top: 3px;
+}
+.ybq-file-preview {
+    display: none;
+}
