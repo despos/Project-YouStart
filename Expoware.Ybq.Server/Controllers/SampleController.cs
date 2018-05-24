@@ -26,6 +26,7 @@ namespace Expoware.Ybq.Server.Controllers
     {
         public ActionResult Throw()
         {
+            //throw new NullReferenceException();
             throw new YbqAppException("Deliberate exception")
                 .AddRecoveryLink("Search on Google", "http://www.google.com")
                 .AddRecoveryLink("Search on SO", "http://www.stackoverflow.com");
@@ -54,7 +55,6 @@ namespace Expoware.Ybq.Server.Controllers
         }
 
         [HttpPost]
-        [AjaxOnly]
         public ActionResult Form(FormInputModel input, HttpPostedFileBase picture)
         {
             // Do some work 
