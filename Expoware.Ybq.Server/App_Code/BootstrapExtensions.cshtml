@@ -1,0 +1,50 @@
+﻿@using System.Web.Mvc
+@helper PlainHtml(string s)
+{
+    @(new HtmlString(s))
+}
+
+@helper DropDown(string id, string title, SelectList list, string buttonStyle = "btn-default", string width = "auto", string caret = "caret")
+{
+    var selectedText = title;
+    var selectedValue = (string)list.SelectedValue ?? "";
+    if (!String.IsNullOrWhiteSpace(selectedValue))
+    {
+        selectedText = (from item in list where item.Value == selectedValue select item.Text).FirstOrDefault();
+    }
+    <div class="btn-group" style="width:@width">
+        <a class="btn @buttonStyle dropdown-toggle" data-toggle="dropdown" style="width:100%">
+            <input type="hidden" name="@id" id="@id" value="@selectedValue" />
+            <div class="bext-dropdown-selected">@selectedText</div>
+            <div style="float:right"><span sty1le="margin:10px" class="@caret"></span></div>
+            <div class="clearfix"></div>
+        </a>
+        <ul class="dropdown-menu bext-dropdown" style="width:100%">
+            @foreach (var item in list)
+            {
+                <li><a href="#" data-value="@item.Value"><span>@item.Text</span></a></li>
+            }
+        </ul>
+    </div>
+}
+
+@helper CheckBox(string id, string label = "", bool checkStatus = false, bool disabled = false)
+{
+    var glyph = checkStatus ? "glyphicon-ok" : "glyphicon-unchecked";
+    var opacity = checkStatus ? "bext-selected" : "";
+    var disabledStatus = disabled ? "bext-disabled disabled" : "";
+    <button class="@disabledStatus btn btn-default bext-checkbox bext-checkbox-button @opacity"
+            data-id="@id"
+            onclick="this.blur();">
+        <div class="bext-checkbox-label">
+            <div style="float: left;">
+                <span class="glyphicon @glyph"></span>
+            </div>
+            <div style="float: left;margin-left: 18px;">
+                @PlainHtml(label)
+            </div>
+        </div>
+    </button>
+    <input type="hidden" id="@id" name="@id" value="@checkStatus" />
+}
+

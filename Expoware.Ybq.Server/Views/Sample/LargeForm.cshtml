@@ -4,6 +4,7 @@
 }
 @section adhoc_Scripts_Top {
     <script src="~/content/scripts/typeahead.bundle.min.js"></script>
+    <script src="~/content/scripts/site/bootstrap-extensions.js?v1"></script>
 }
 <div class="visible-xs">
     <h4 class="text-center text-danger">This view requires a larger screen</h4>
@@ -89,7 +90,7 @@
 
         if (Ybq.canAcceptFormContent("#large-form", fieldValidators)) {
             Ybq.postForm("#large-form",
-                function(data) {
+                function (data) {
                     var response = JSON.parse(data);
                     Ybq.toast("#large-form-message", response.Message, response.Success);
                 });

@@ -46,7 +46,6 @@
     <Reference Include="Expoware.Youbiquitous.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\youbiquitous-mvc-lib.1.1.2\lib\net45\Expoware.Youbiquitous.Mvc.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -54,9 +53,6 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Web.Extensions">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Web">
       <Private>True</Private>
     </Reference>
@@ -86,6 +82,7 @@
     <Content Include="Content\images\flags\en-us.png" />
     <Content Include="Content\images\flags\it-it.png" />
     <Content Include="Content\images\ybq-xs.png" />
+    <Content Include="Content\scripts\site\bootstrap-extensions.js" />
     <Content Include="Content\scripts\site\ybq-core.min.js">
       <DependentUpon>ybq-core.js</DependentUpon>
     </Content>
@@ -117,6 +114,7 @@
     <Content Include="Content\scripts\bootstrap.min.js" />
     <Content Include="Content\scripts\jquery-3.1.1.min.js" />
     <Content Include="InCaseOfTroubles.txt" />
+    <Content Include="App_Code\BootstrapExtensions.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -151,6 +149,7 @@
     <Compile Include="Models\Account\LoginInputModel.cs" />
     <Compile Include="Models\ErrorViewModel.cs" />
     <Compile Include="Common\Features\Geo\Address.cs" />
+    <Compile Include="Models\Sample\ChangePasswordOption.cs" />
     <Compile Include="Models\Sample\LargeFormInputModel.cs" />
     <Compile Include="Models\Sample\FormInputModel.cs" />
     <Compile Include="Models\Sample\DownloadViewModel.cs" />

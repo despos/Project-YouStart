@@ -1,7 +1,7 @@
 ﻿///////////////////////////////////////////////////////////////////
 //
 // Youbiquitous YBQ : app starter 
-// Copyright (c) Youbiquitous srls 2017
+// Copyright (c) Youbiquitous srls 2018
 //
 // Author: Dino Esposito (http://youbiquitous.net)
 //
@@ -70,7 +70,11 @@ namespace Expoware.Ybq.Server.Controllers
         [HttpGet]
         public ActionResult LargeForm()
         {
-            return View(ViewModelBase.Default());
+            var model = new LargeFormInputModel
+            {
+                ChangePasswordOptions = ChangePasswordOption.All
+            };
+            return View(model);
         }
 
         [HttpPost]

@@ -1,7 +1,7 @@
 ﻿///////////////////////////////////////////////////////////////////
 //
 // Youbiquitous YBQ : app starter 
-// Copyright (c) Youbiquitous srls 2017
+// Copyright (c) Youbiquitous srls 2018
 //
 // Author: Dino Esposito (http://youbiquitous.net)
 //
@@ -32,12 +32,12 @@ namespace Expoware.Ybq.Server
 
         protected void Application_Error(object sender, EventArgs e)
         {
-            var exception = Server.GetLastError();
+            //var exception = Server.GetLastError();
 
-            var httpContext = ((HttpApplication)sender).Context;
-            httpContext.Response.Clear();
-            httpContext.ClearError();
-            InvokeErrorAction(httpContext, exception);
+            //var httpContext = ((HttpApplication)sender).Context;
+            //httpContext.Response.Clear();
+            //httpContext.ClearError();
+            //InvokeErrorAction(httpContext, exception);
         }
 
 
